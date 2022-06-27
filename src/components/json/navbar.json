@@ -1,0 +1,15 @@
+{
+    "Dashboard": {
+        "link": "",
+        "icontype": "fa-solid",
+        "icon": "fa-"
+    },
+    "Leave": {
+        "link": "leave",
+        "icon": "",
+        "icontype": "",
+        "dropdown": {
+            "": {"link": ""}
+        }
+    }
+}
