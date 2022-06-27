@@ -25,7 +25,14 @@ function App() {
       password: loginPassword
     })
     .then(function (response) {
-      window.location.reload(false);
+      axios.post('http://localhost:8080/auth')
+      .then(function (res) {
+        setUser(res.data)
+        console.log("HA")
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
     })
     .catch(function (error) {
       console.log(error);
