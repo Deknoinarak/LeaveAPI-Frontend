@@ -7,12 +7,12 @@ function App() {
   const [loginPassword, setLoginPassword] = useState("")
   const [createEmail, setCreateEmail] = useState("")
   const [createPassword, setCreatePassword] = useState("")
-  const [user, setUser] = useState("")
+  // const [user, setUser] = useState("")
 
   useEffect(() => {
     axios.post('http://localhost:8080/auth')
     .then(function (res) {
-      setUser(res.data.user)
+      // setUser(res.data.user)
       console.log(res.data)
     })
     .catch(function (error) {
