@@ -12,6 +12,12 @@ const Login = () => {
       [field]: value,
     });
 
+    if (!!errors["Auth"])
+      setErrors({
+        ...errors,
+        ["Auth"]: null
+      });
+
     if (!!errors[field])
       setErrors({
         ...errors,
