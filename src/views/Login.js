@@ -15,7 +15,7 @@ const Login = () => {
     if (!!errors["Auth"])
       setErrors({
         ...errors,
-        ["Auth"]: null
+        "Auth": null
       });
 
     if (!!errors[field])
@@ -64,7 +64,7 @@ const Login = () => {
       if (res) window.location.href = "/";
     })
     .catch(function (error) {
-      if (error.code == "ERR_BAD_RESPONSE") {
+      if (error.code === "ERR_BAD_RESPONSE") {
         setErrors({
           ...errors,
           "Auth":"Something wrong, please try again",

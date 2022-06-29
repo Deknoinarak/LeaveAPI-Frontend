@@ -25,7 +25,9 @@ function Home() {
         </bs.Col>
       </bs.Row>
       <bs.Row xs="12">
-        <h3>สวัสดี, คุณ{user && user.user ? user.user.providerData.displayName ? user.user.providerData.displayName : user.user.email : "Not Login" }</h3>
+        {
+          user && user.user ? <h3>สวัสดี, {user.user.providerData.displayName ? user.user.providerData.displayName : user.user.email}</h3> : <h3>กรุณาเข้าสู่ระบบ</h3>
+        }
       </bs.Row>
     </bs.Container>
   );
