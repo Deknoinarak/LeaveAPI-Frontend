@@ -1,7 +1,6 @@
 import * as bs from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom"
 import axios from "axios"
 
 const Navbar = () => {
