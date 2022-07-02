@@ -1,6 +1,6 @@
 import * as bs from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios"
 
 const Navbar = () => {
@@ -11,7 +11,6 @@ const Navbar = () => {
     axios.post("http://localhost:8080/auth")
       .then(res => {
         setUser(res.data)
-        console.log(res.data)
       })
       .catch(err => {
         console.log(err)
@@ -30,7 +29,6 @@ const Navbar = () => {
 
   const pathName = window.location.pathname
   const getHR = pathName.split('/');
-  console.log(getHR[1])
 
   return (
     <bs.Container fluid className="m-0 p-0">

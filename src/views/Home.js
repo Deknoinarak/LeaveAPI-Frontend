@@ -1,62 +1,54 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "react-big-calendar/lib/css/react-big-calendar.css";
 import * as bs from "react-bootstrap";
-import { Calendar, momentLocalizer } from 'react-big-calendar'
-import moment from 'moment'
+import { Calendar } from "../components/components"
 import axios from "axios";
+import moment from "moment";
+import "moment/locale/th";
 
 const Home = () => {
+  const [user, setUser] = useState("");
+  const [calendarEvents, setCalendarEvents] = useState([]);
+  const [calVal, setCalVal] = useState(moment().locale('th'));
 
-  const [user, setUser] = useState("")
-  
   useEffect(() => {
-    axios.post("http://localhost:8080/auth")
-      .then(res => {
-        setUser(res.data)
+    axios
+      .post("http://localhost:8080/auth")
+      .then((res) => {
+        setUser(res.data);
       })
-      .catch(err => {
-        console.log(err)
-      })
-  }, [])
+      .catch((err) => {
+        console.log(err);
+      });
 
-  const localizer = momentLocalizer(moment)
-  const leaveEvents = [
-    {
-      title: "ลาพักร้อน",
-      allDay: true,
-      start: new Date(2022, 6, 29),
-      end: new Date(2022, 6, 30),
-    }
-  ]
+    axios
+      .get("http://localhost:8080/fetch/calendar")
+      .then((res) => {
+        setCalendarEvents(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   return (
     <bs.Container className="p-3">
-      <bs.Row>
-        <bs.Col xs="12" className="mb-3">
-          <bs.Card>
-            <bs.Card.Body>
-              <h3>ปฏิทินการลา</h3>
-              <Calendar
-                localizer={localizer}
-                events={leaveEvents}
-                startAccessor="start"
-                endAccessor="end"
-                style={{ height: 500 }}
-              />
-            </bs.Card.Body>
-          </bs.Card>
-        </bs.Col>
-        <bs.Col xs="12" className="mb-3">
-          <bs.Card>
-            <bs.Card.Body>
-              <h3>การลาของฉัน</h3>
-            </bs.Card.Body>
-          </bs.Card>
-        </bs.Col>
-      </bs.Row>
+      {user && user.user ? (
+        <bs.Row>
+          <bs.Col xs="12" className="mb-3">
+            <bs.Card>
+              <bs.Card.Body>
+                <h3>การลาของฉัน</h3>
+                <Calendar height={"100%"} events={calendarEvents} value={calVal} setValue={setCalVal}/>
+              </bs.Card.Body>
+            </bs.Card>
+          </bs.Col>
+        </bs.Row>
+      ) : (
+        <h1>กรุณาเข้าสู่ระบบก่อน</h1>
+      )}
     </bs.Container>
   );
-}
+};
 
 export { Home };
