@@ -1,18 +1,37 @@
 import React, { useState, useEffect } from "react";
-import $ from "jquery";
+import axios from "axios";
+import DateFnsUtils from '@date-io/date-fns';
+import {
+  MuiPickersUtilsProvider,
+  KeyboardDatePicker,
+} from '@material-ui/pickers';
 import "bootstrap/dist/css/bootstrap.min.css";
 import * as bs from "react-bootstrap";
-import "bootstrap-select/dist/js/bootstrap-select.js";
-import "bootstrap-select/dist/css/bootstrap-select.min.css";
+import "../components/css/all.min.css";
 
 export const Leave = () => {
+  const [leaveType, setLeaveType] = useState([]);
+
   const [show, setShow] = useState(false);
+  const [selectType, setSelectType] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const selectTypeClose = () => setSelectType(false);
+  const selectTypeShow = () => setSelectType(true);
+
+  const [type, setType] = useState(false);
+
   useEffect(() => {
-    console.log($(".selectpicker").selectpicker());
+    axios
+      .get("http://localhost:8080/fetch/leavetype")
+      .then((res) => {
+        setLeaveType(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
 
   return (
@@ -21,8 +40,23 @@ export const Leave = () => {
         <bs.Col xs="12" className="mb-3">
           <bs.Card>
             <bs.Card.Body>
-              <h2>การลาของฉัน</h2>
-              <div>
+              <h2 className="mb-3">การลาของฉัน</h2>
+              <bs.Row className="mb-3">
+                <bs.Col xs="12">
+                  <h3>สิทธิการลาของฉัน</h3>
+                </bs.Col>
+                {leaveType.map((l) => (
+                  <bs.Col>
+                    <bs.Card className={`text-bg-${l.color}`}>
+                      <bs.Card.Body className="d-flex justify-content-between align-items-center">
+                        <h2>{l.title}</h2>
+                        <h1>12</h1>
+                      </bs.Card.Body>
+                    </bs.Card>
+                  </bs.Col>
+                ))}
+              </bs.Row>
+              <div className="mb-3">
                 <bs.Button variant="success" onClick={handleShow}>
                   ยื่นอนุมัติการลา
                 </bs.Button>
@@ -45,33 +79,93 @@ export const Leave = () => {
         <bs.Modal.Body>
           <bs.Form>
             <bs.Form.Group className="mb-3" controlId="LeaveTypeSelect">
-              <bs.Form.Label>Password</bs.Form.Label>
+              <bs.Form.Label>
+                ประเภทการลา <sup className="text-danger fw-bold">*</sup>
+              </bs.Form.Label>
               <div>
-                <select id="testDropdown" className="form-control selectpicker">
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                </select>
+                <bs.Button
+                  className="w-100"
+                  variant={type ? "success" : "danger"}
+                  onClick={() => {
+                    selectTypeShow();
+                    handleClose();
+                  }}
+                >
+                  {type ? (
+                    <>
+                      <i className={`fa-solid fa-${type.icon} me-1`} />{" "}
+                      {type.title}
+                    </>
+                  ) : (
+                    "เลือกประเภทการลา..."
+                  )}
+                </bs.Button>
               </div>
             </bs.Form.Group>
-
-            <bs.Form.Group className="mb-3" controlId="formBasicPassword">
-              <bs.Form.Label>Password</bs.Form.Label>
-              <bs.Form.Control type="password" placeholder="Password" />
-            </bs.Form.Group>
+            <bs.Row className="mb-3">
+              <bs.Form.Group className="col-6 mb-3" controlId="dateStart">
+                <bs.Form.Label>วันที่เริ่ม</bs.Form.Label>
+                <bs.Form.Control type="date" placeholder="Password" />
+              </bs.Form.Group>
+              <bs.Form.Group className="col-6 mb-3" controlId="dateEnd">
+                <bs.Form.Label>วันที่สิ้นสุด</bs.Form.Label>
+                <bs.Form.Control type="date" placeholder="Password" />
+              </bs.Form.Group>
+            </bs.Row>
             <bs.Form.Group className="mb-3" controlId="formBasicCheckbox">
               <bs.Form.Check type="checkbox" label="Check me out" />
             </bs.Form.Group>
-            <bs.Button variant="primary" type="submit">
-              Submit
-            </bs.Button>
           </bs.Form>
         </bs.Modal.Body>
         <bs.Modal.Footer>
-          <bs.Button variant="secondary" onClick={handleClose}>
-            Close
+          <bs.Button variant="danger" onClick={handleClose}>
+            ยกเลิก
           </bs.Button>
-          <bs.Button variant="primary">Understood</bs.Button>
+          <bs.Button variant="success">ส่งคำร้อง</bs.Button>
+        </bs.Modal.Footer>
+      </bs.Modal>
+
+      <bs.Modal
+        show={selectType}
+        onHide={selectTypeClose}
+        backdrop="static"
+        keyboard={false}
+        centered
+      >
+        <bs.Modal.Header>
+          <bs.Modal.Title>เลือกประเภทการลา</bs.Modal.Title>
+        </bs.Modal.Header>
+        <bs.Modal.Body>
+          <bs.Row>
+            {leaveType.map((l) => (
+              <bs.Col
+                className={`d-flex flex-column justify-content-center align-items-center text-bg-${l.color} py-3`}
+                style={{ cursor: "pointer" }}
+                onClick={() => {
+                  setType(l);
+                  selectTypeClose();
+                  handleShow();
+                }}
+                key={l.value}
+              >
+                <h1>
+                  <i className={`fa-solid fa-${l.icon}`} />
+                </h1>
+                <h2>{l.title}</h2>
+              </bs.Col>
+            ))}
+          </bs.Row>
+        </bs.Modal.Body>
+        <bs.Modal.Footer>
+          <bs.Button
+            variant="success"
+            onClick={() => {
+              selectTypeClose();
+              handleShow();
+            }}
+          >
+            ปิด
+          </bs.Button>
         </bs.Modal.Footer>
       </bs.Modal>
     </bs.Container>

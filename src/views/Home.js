@@ -38,7 +38,7 @@ const Home = () => {
           <bs.Col xs="12" className="mb-3">
             <bs.Card>
               <bs.Card.Body>
-                <h3>การลาของฉัน</h3>
+                <h3>ปฏิทิน</h3>
                 <Calendar height={"100%"} events={calendarEvents} value={calVal} setValue={setCalVal}/>
               </bs.Card.Body>
             </bs.Card>
