@@ -4,8 +4,6 @@ import * as bs from "react-bootstrap";
 import { CalendarBuilder } from "./CalendarBuilder";
 import { dayStyles } from "./CalendarStyles";
 import { CalendarHeader } from "./CalendarHeader";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import moment from "moment";
 
 const Calendar = ({ value, setValue, height, events }) => {
@@ -32,9 +30,9 @@ const Calendar = ({ value, setValue, height, events }) => {
   };
 
   const eventStyle = (e) => {
-    if (e.dayOff) return solid("plane-departure");
-    if (e.hbd) return solid("cake-candles");
-    return solid("calendar");
+    if (e.dayOff) return "plane-departure";
+    if (e.hbd) return "cake-candles";
+    return "calendar";
   };
 
   useEffect(() => {
@@ -89,8 +87,8 @@ const Calendar = ({ value, setValue, height, events }) => {
                                       <tr>
                                         <td>
                                           <h4 className="text-primary">
-                                            <FontAwesomeIcon
-                                              icon={eventStyle(event)}
+                                            <i
+                                              className={`fas fa-${eventStyle(event)}`}
                                             />
                                           </h4>
                                         </td>
@@ -103,8 +101,8 @@ const Calendar = ({ value, setValue, height, events }) => {
                                       <tr>
                                         <td>
                                           <span>
-                                            <FontAwesomeIcon
-                                              icon={solid("calendar-days")}
+                                            <i
+                                              className={`fas fa-calendar-days`}
                                             />
                                           </span>
                                         </td>
@@ -128,7 +126,7 @@ const Calendar = ({ value, setValue, height, events }) => {
                           >
                             <bs.Col>
                               <span className="badge bg-gray-200 w-100 text-dark">
-                                <FontAwesomeIcon icon={eventStyle(event)} />
+                                <i className={`fas fa-${eventStyle(event)}`} />
                               </span>
                             </bs.Col>
                           </bs.OverlayTrigger>
@@ -162,7 +160,7 @@ const Calendar = ({ value, setValue, height, events }) => {
               <bs.Row className="flex-column w-100">
                 <bs.Col>
                   <span className="badge bg-gray-200 w-100 text-dark">
-                    <FontAwesomeIcon icon={solid("plane-departure")} />
+                    <i className="fas fa-plane-departure" />
                   </span>
                   <span className="badge bg-gray-600 w-100 text-truncate">
                     ii
@@ -174,7 +172,7 @@ const Calendar = ({ value, setValue, height, events }) => {
               <bs.Row className="flex-column w-100">
                 <bs.Col>
                   <span className="badge bg-gray-200 w-100 text-dark">
-                    <FontAwesomeIcon icon={solid("plane-departure")} />
+                    <i className={`fas fa-plane-departure`} />
                   </span>
                   <span className="badge bg-gray-600 w-100 text-truncate">
                     ii
@@ -186,7 +184,7 @@ const Calendar = ({ value, setValue, height, events }) => {
               <bs.Row className="flex-column w-100">
                 <bs.Col>
                   <span className="badge bg-gray-200 w-100 text-dark">
-                    <FontAwesomeIcon icon={solid("plane-departure")} />
+                    <i className={`fas fa-plane-departure`} />
                   </span>
                   <span className="badge bg-gray-600 w-100 text-truncate">
                     ii
@@ -198,7 +196,7 @@ const Calendar = ({ value, setValue, height, events }) => {
               <bs.Row className="flex-column w-100">
                 <bs.Col>
                   <span className="badge bg-gray-200 w-100 text-dark">
-                    <FontAwesomeIcon icon={solid("plane-departure")} />
+                    <i className={`fas fa-plane-departure`} />
                   </span>
                   <span className="badge bg-gray-600 w-100 text-truncate">
                     ii
@@ -210,7 +208,7 @@ const Calendar = ({ value, setValue, height, events }) => {
               <bs.Row className="flex-column w-100">
                 <bs.Col>
                   <span className="badge bg-gray-200 w-100 text-dark">
-                    <FontAwesomeIcon icon={solid("plane-departure")} />
+                    <i className={`fas fa-plane-departure`} />
                   </span>
                   <span className="badge bg-gray-600 w-100 text-truncate">
                     ii
@@ -222,7 +220,7 @@ const Calendar = ({ value, setValue, height, events }) => {
               <bs.Row className="flex-column w-100">
                 <bs.Col>
                   <span className="badge bg-gray-200 w-100 text-dark">
-                    <FontAwesomeIcon icon={solid("plane-departure")} />
+                    <i className={`fas fa-plane-departure`} />
                   </span>
                   <span className="badge bg-gray-600 w-100 text-truncate">
                     ii
@@ -234,7 +232,7 @@ const Calendar = ({ value, setValue, height, events }) => {
               <bs.Row className="flex-column w-100">
                 <bs.Col>
                   <span className="badge bg-gray-200 w-100 text-dark">
-                    <FontAwesomeIcon icon={solid("plane-departure")} />
+                    <i className={`fas fa-plane-departure`} />
                   </span>
                   <span className="badge bg-gray-600 w-100 text-truncate">
                     ii

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import * as bs from "react-bootstrap";
-import { Calendar } from "../components/components"
+import { Calendar } from "../components/components";
 import axios from "axios";
 import moment from "moment";
 import "moment/locale/th";
@@ -9,7 +9,7 @@ import "moment/locale/th";
 const Home = () => {
   const [user, setUser] = useState("");
   const [calendarEvents, setCalendarEvents] = useState([]);
-  const [calVal, setCalVal] = useState(moment().locale('th'));
+  const [calVal, setCalVal] = useState(moment().locale("th"));
 
   useEffect(() => {
     axios
@@ -39,7 +39,12 @@ const Home = () => {
             <bs.Card>
               <bs.Card.Body>
                 <h3>ปฏิทิน</h3>
-                <Calendar height={"100%"} events={calendarEvents} value={calVal} setValue={setCalVal}/>
+                <Calendar
+                  height={"100%"}
+                  events={calendarEvents}
+                  value={calVal}
+                  setValue={setCalVal}
+                />
               </bs.Card.Body>
             </bs.Card>
           </bs.Col>

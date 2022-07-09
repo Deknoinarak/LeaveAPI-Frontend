@@ -1,8 +1,6 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import * as bs from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import moment from "moment";
 
 const CalendarHeader = ({ value, setValue, calType, setCalType }) => {
@@ -55,7 +53,7 @@ const CalendarHeader = ({ value, setValue, calType, setCalType }) => {
               style={{ cursor: "pointer" }}
               onClick={() => setValue(prevMonth())}
             >
-              <FontAwesomeIcon icon={solid("chevron-left")} />
+              <i className={`fas fa-chevron-left`} />
             </bs.Col>
           </bs.OverlayTrigger>
           <bs.OverlayTrigger
@@ -82,7 +80,7 @@ const CalendarHeader = ({ value, setValue, calType, setCalType }) => {
               style={{ cursor: "pointer" }}
               onClick={() => setValue(nextMonth())}
             >
-              <FontAwesomeIcon icon={solid("chevron-right")} />
+              <i className={`fas fa-chevron-right`} />
             </bs.Col>
           </bs.OverlayTrigger>
           <bs.Col className="mx-2 d-flex justify-content-start align-items-center">

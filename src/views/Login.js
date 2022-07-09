@@ -64,12 +64,10 @@ const Login = () => {
       if (res) window.location.href = "/";
     })
     .catch(function (error) {
-      if (error.code === "ERR_BAD_RESPONSE") {
-        setErrors({
-          ...errors,
-          "Auth":"Something wrong, please try again",
-        })
-      }
+      setErrors({
+        ...errors,
+        "Auth":"Something wrong, please try again",
+      })
     });
   };
 

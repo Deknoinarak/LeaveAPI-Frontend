@@ -30,7 +30,7 @@ const Footer = () => {
               className="mb-3 me-2 mb-md-0 text-decoration-none"
             >
               {logo.res ? (
-                <bs.Image src={logo.res} style={{ width: 50 }} fluid />
+                <bs.Image src={/* logo.res */"https://moralcenter.or.th/images/logo.png"} style={{ /*width: 50*/ }} fluid />
               ) : (
                 <Skeleton style={{ width: 50, height: 50 }}/>
               )}
