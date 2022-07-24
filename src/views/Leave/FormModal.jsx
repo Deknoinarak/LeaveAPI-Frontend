@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 // import { FileUploader } from "react-drag-drop-files";
-import { DatePicker, TimePicker } from "./DatePicker";
+import { DatePicker, TimePicker } from "../components/DatePicker";
 import "bootstrap/dist/css/bootstrap.min.css";
 import * as bs from "react-bootstrap";
 import "../../components/css/all.min.css";

@@ -13,7 +13,13 @@ export const DatePicker = ({ setTime, time, label, name, ...props }) => {
     <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={th}>
       <DatePick
         label={label}
-        renderInput={(params) => <TextField {...params} />}
+        renderInput={(params) => (
+          <TextField
+            {...params}
+            style={{ ...props.style, width: "100%" }}
+            error={props.error}
+          />
+        )}
         value={time}
         onChange={(time) => {
           setTime(name, time);

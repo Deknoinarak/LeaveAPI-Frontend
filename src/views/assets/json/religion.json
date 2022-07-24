@@ -1,0 +1,8 @@
+[
+  { "id": "christianity", "name": "ศาสนาคริสต์" },
+  { "id": "islam", "name": "ศาสนาอิสลาม" },
+  { "id": "hinduism", "name": "ศาสนาฮินดู" },
+  { "id": "buddhism", "name": "ศาสนาพุทธ" },
+  { "id": "folk", "name": "ศาสนาอื่นๆ" },
+  { "id": "irreligious", "name": "ไม่นับถือ" }
+]

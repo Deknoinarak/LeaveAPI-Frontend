@@ -23,6 +23,7 @@ root.render(
           path="leave"
           element={<Include.CheckRole element={<Page.Leave />} />}
         />
+        <Route path="play" element={<Page.Playground />} />
       </Route>
 
       {/* //* Admin */}

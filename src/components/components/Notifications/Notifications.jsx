@@ -6,6 +6,7 @@ import * as muiIcon from "@mui/icons-material";
 
 export const Notifications = ({ data }) => {
   // * Variables * //
+  // eslint-disable-next-line
   const [notificationData, setNotificationData] = useState(data);
 
   // * Functions * //
